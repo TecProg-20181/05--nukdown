@@ -15,4 +15,9 @@ class TestClass(unittest.TestCase):
         string = 'du -d 1'
         rawstring = diskspace.subprocess_check_output(string)
         self.assertEqual(subprocess.check_output(string.strip().split(' ')),
-                        rawstring)
+                         rawstring)
+
+    def test_byte_type(self):
+        block = 0
+        labeltype = diskspace.bytes_to_readable(block)[-1:]
+        self.assertEqual(labeltype, 'B')
