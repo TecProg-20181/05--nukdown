@@ -16,8 +16,10 @@ class TestClass(unittest.TestCase):
         rawstring = diskspace.subprocess_check_output(string)
         self.assertEqual(subprocess.check_output(string.strip().split(' ')),
                          rawstring)
+        self.assertIsNotNone(rawstring)
 
-    def test_byte_type(self):
+    def test_min_byte_type(self):
         block = 0
-        labeltype = diskspace.bytes_to_readable(block)[-1:]
-        self.assertEqual(labeltype, 'B')
+        labeltype = diskspace.bytes_to_readable(block)
+        self.assertEqual(labeltype[-1:], 'B')
+        self.assertEqual(labeltype, '0.00B')
