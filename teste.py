@@ -23,3 +23,18 @@ class TestClass(unittest.TestCase):
         labeltype = diskspace.bytes_to_readable(block)
         self.assertEqual(labeltype[-1:], 'B')
         self.assertEqual(labeltype, '0.00B')
+
+    def test_kbyte_type(self):
+        block = 1000
+        labeltype = diskspace.bytes_to_readable(block)
+        self.assertEqual(labeltype[-2:], 'Kb')
+
+    def test_megabyte_type(self):
+        block = 100000
+        labeltype = diskspace.bytes_to_readable(block)
+        self.assertEqual(labeltype[-2:], 'Mb')
+
+    def test_gibabyte_type(self):
+        block = 10000000
+        labeltype = diskspace.bytes_to_readable(block)
+        self.assertEqual(labeltype[-2:], 'Gb')
